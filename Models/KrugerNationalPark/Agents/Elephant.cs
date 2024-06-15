@@ -14,9 +14,6 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using KrugerNationalPark.Layers;
 using KrugerNationalPark.Output;
 using Mars.Common;
@@ -190,7 +187,7 @@ namespace KrugerNationalPark.Agents
         private readonly Random _random;
         private readonly int[] _reproductionYears = {15, 40};
         private readonly WaterSources _waterSources;
-        private Elephant _elephantLeader;
+        private Elephant? _elephantLeader;
 
         // all required layer by used by this elephant entity
         private readonly ElephantLayer _elephantLayer;
@@ -485,6 +482,7 @@ namespace KrugerNationalPark.Agents
         private void ElephantAction()
         {
             // finally move to the leading cow if distance is too large
+            
             _elephantLeader = _elephantLayer.GetLeadingElephantByHerd(HerdId);
 
             //if leading cow exists, move towards it

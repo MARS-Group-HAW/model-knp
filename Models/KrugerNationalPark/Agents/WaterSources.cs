@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using KrugerNationalPark.Layers;
+﻿using KrugerNationalPark.Layers;
 using Mars.Interfaces.Environments;
 
 namespace KrugerNationalPark.Agents
@@ -34,7 +32,7 @@ namespace KrugerNationalPark.Agents
                 : null;
         }
 
-        internal Position GetClosestWaterSourceInSight(double lat, double lon)
+        internal Position? GetClosestWaterSourceInSight(double lat, double lon)
         {
             // CHECK: Increased sense to water in order to avoid dead ends in the model
 

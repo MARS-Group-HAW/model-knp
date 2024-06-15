@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
 using NetTopologySuite.Features;
 using NetTopologySuite.IO;
 using NetTopologySuite.IO.Converters;
@@ -49,7 +45,8 @@ namespace KrugerNationalPark.Output
             {
                 if (agent.TripsCollection == null) continue;
                 foreach (var (modalType, trip) in agent.TripsCollection.Result)
-                    if (trip != null && trip.Count >= 2)
+                {
+                    if (trip is { Count: >= 2 })
                     {
                         var path = new TripsLine(trip.ToArray());
                         var f = new Feature(path, new AttributesTable(
@@ -57,10 +54,10 @@ namespace KrugerNationalPark.Output
                             {
                                 {"creation_id", agent.StableId.ToString()},
                                 {"agent_type", agent.GetType().Name},
-                                {"modal_type", modalType?.ToString()}
+                                {"modal_type", modalType.ToString()}
                             }));
                         collection.Add(f);
-                    }
+                    }}
             }
             
             File.WriteAllText($"{FileNamePrefix}_{DateTime.Now:yy-MMM-ddTHH-mm-ss}.geojson", writer.Write(collection));

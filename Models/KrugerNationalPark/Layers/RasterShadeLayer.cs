@@ -1,6 +1,4 @@
-﻿using System;
-using System.Linq;
-using Mars.Components.Layers;
+﻿using Mars.Components.Layers;
 using Mars.Interfaces.Environments;
 
 namespace KrugerNationalPark.Layers
@@ -21,7 +19,7 @@ namespace KrugerNationalPark.Layers
         /// <returns>
         ///     Returns the coordinates of the field or null if no shades were found or current field has 0 value.
         /// </returns>
-        public Position ExploreClosestFullPotentialField(double lat, double lon, int maxDistance)
+        public Position? ExploreClosestFullPotentialField(double lat, double lon, int maxDistance)
         {
             if (IsPointInside(Position.CreateGeoPosition(lon, lat)))
             {

@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace KrugerNationalPark.Agents
+﻿namespace KrugerNationalPark.Agents
 {
     /// <summary>
     ///     Represents an elephant herd

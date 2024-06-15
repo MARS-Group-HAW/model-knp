@@ -1,6 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using Mars.Interfaces;
 using Mars.Interfaces.Environments;
 
@@ -9,15 +6,9 @@ namespace KrugerNationalPark.Output
     /// <summary>
     ///     Holds <see cref="TripPosition" />s saved in a temporal order and structured by any object type.
     /// </summary>
-    public sealed class TripsCollection
+    public sealed class TripsCollection(ISimulationContext context)
     {
         private static readonly DateTime ReferenceDateTime = new(1970, 1, 1);
-        private readonly ISimulationContext _context;
-
-        public TripsCollection(ISimulationContext context)
-        {
-            _context = context;
-        }
 
         /// <summary>
         ///     Holds all <see cref="TripPosition" />s structured by an object.
@@ -30,7 +21,10 @@ namespace KrugerNationalPark.Output
         /// <param name="position">That is stored.</param>
         public void Add(Position position)
         {
-            Add(Result.Any() ? Result.Last().Item1 : null, position);
+            if (Result.Count != 0)
+            {
+                Add(Result.Last().Item1, position);
+            }
         }
 
         /// <summary>
@@ -41,15 +35,17 @@ namespace KrugerNationalPark.Output
         /// <param name="position">That is stored.</param>
         public void Add(object key, Position position)
         {
-            var clock = _context.CurrentTimePoint.GetValueOrDefault();
+            var clock = context.CurrentTimePoint.GetValueOrDefault();
             var time = (int) clock.Subtract(ReferenceDateTime).TotalSeconds;
             var tripPosition = new TripPosition(position.Longitude, position.Latitude) {UnixTimestamp = time};
+            
             key ??= 0x01;
+            
             var (previousKey, tripPositions) = Result.LastOrDefault();
             if (previousKey != null && previousKey.Equals(key))
                 tripPositions.Add(tripPosition);
             else
-                Result.Add((key, new List<TripPosition> {tripPosition}));
+                Result.Add((key, [tripPosition]));
         }
     }
 }

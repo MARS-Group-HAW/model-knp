@@ -1,6 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using NetTopologySuite.Geometries;
 using NetTopologySuite.Operation;
 
@@ -46,7 +43,7 @@ namespace KrugerNationalPark.Output
 
         /// <summary>
         /// </summary>
-        public override Coordinate Coordinate => IsEmpty ? null : _points[0];
+        public override Coordinate? Coordinate => IsEmpty ? null : _points[0];
 
         /// <summary>
         /// </summary>
@@ -104,7 +101,7 @@ namespace KrugerNationalPark.Output
         /// </summary>
         /// <param name="ordinate">The ordinate index</param>
         /// <returns>An array of ordinate values</returns>
-        public override double[] GetOrdinates(Ordinate ordinate)
+        public override double[]? GetOrdinates(Ordinate ordinate)
         {
             return null;
         }

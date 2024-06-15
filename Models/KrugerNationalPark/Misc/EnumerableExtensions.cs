@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-
 namespace KrugerNationalPark.Misc
 {
     public static class EnumerableExtensions

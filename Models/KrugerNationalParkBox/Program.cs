@@ -33,7 +33,7 @@ namespace KrugerNationalParkStarter
             description.AddLayer<ElephantLayer>();
 
             // Second register the agent types with their respective layer type
-            var elephant = description.AddAgent<Elephant, ElephantLayer>();
+            description.AddAgent<Elephant, ElephantLayer>();
 
             // Starting up
             SimulationWorkflowState result = null;
@@ -56,9 +56,16 @@ namespace KrugerNationalParkStarter
                     file = File.ReadAllText("config.json");
                 }
 
+
+                // Mars.Core.Model.Implementation.ModelBuildTask.BuildAndResolve
+
+
                 var simConfig = SimulationConfig.Deserialize(file);
-                var starter = SimulationStarter.Start(description, simConfig);
-                result = starter.Run();
+                var simulation = SimulationStarter.Build(description, simConfig);
+                simulation.PrepareSimulation(description, simConfig);
+                result = simulation.StartSimulation(description, simConfig);
+                // var starter = SimulationStarter.Start(description, simConfig);
+                // result = starter.Run();
             }
 
             // Generate proprietary trips output

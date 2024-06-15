@@ -1,5 +1,3 @@
-using System;
-using System.Collections.Generic;
 using NetTopologySuite.Geometries;
 using NetTopologySuite.IO.Converters;
 using Newtonsoft.Json;
