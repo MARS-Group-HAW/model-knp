@@ -3,21 +3,14 @@ using Mars.Interfaces.Environments;
 
 namespace KrugerNationalPark.Agents
 {
-    public class WaterSources
+    public class WaterSources(VectorWaterLayer gisWaterLayer)
     {
-        private readonly VectorWaterLayer _gisWaterLayer;
-        private readonly IList<Position> _waterSources;
-
-        public WaterSources(VectorWaterLayer gisWaterLayer)
-        {
-            _waterSources = new List<Position>();
-            _gisWaterLayer = gisWaterLayer;
-        }
+        private readonly IList<Position> _waterSources = new List<Position>();
 
         internal void AddInitialWaterSource(double lat, double lon)
         {
             const double maxMaxDistance = double.MaxValue;
-            var closestSource = _gisWaterLayer.ExploreClosestFullPotentialField(lat, lon, maxMaxDistance);
+            var closestSource = gisWaterLayer.ExploreClosestFullPotentialField(lat, lon, maxMaxDistance);
             if (closestSource != null) _waterSources.Add(closestSource);
         }
 
@@ -37,7 +30,7 @@ namespace KrugerNationalPark.Agents
             // CHECK: Increased sense to water in order to avoid dead ends in the model
 
             const double agentMaxSightInKm = 25;
-            var closestInSight = _gisWaterLayer.ExploreClosestFullPotentialField(lat, lon, agentMaxSightInKm);
+            var closestInSight = gisWaterLayer.ExploreClosestFullPotentialField(lat, lon, agentMaxSightInKm);
             if (closestInSight == null)
                 //Console.WriteLine("No water available at: " + lat + ", " + lon);
                 return null;

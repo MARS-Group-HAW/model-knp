@@ -7,7 +7,6 @@ using KrugerNationalPark.Layers;
 using KrugerNationalPark.Output;
 using Mars.Common.Core.Collections;
 using Mars.Common.Core.Logging;
-//using Mars.Common.Core.Logging.Enums;
 using Mars.Components.Starter;
 using Mars.Core.Simulation.Entities;
 using Mars.Interfaces.Model;
