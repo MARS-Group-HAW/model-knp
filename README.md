@@ -37,3 +37,10 @@ Simulation results are produced in the executed directory or against the configu
 > `xattr -d com.apple.quarantine ./KrugerNationalParkBox`
 > `xattr -d com.apple.quarantine ./*.dll`
 > `xattr -d com.apple.quarantine ./*.dylib`
+
+## History
+
+The elephant model here originates from
+[MARS-Group-HAW/model-knp-elephant](https://github.com/MARS-Group-HAW/model-knp-elephant), which was
+integrated into this repository in June 2024. That repository is now archived; this one is the maintained
+successor.
