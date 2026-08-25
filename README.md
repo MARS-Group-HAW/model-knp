@@ -43,4 +43,12 @@ Simulation results are produced in the executed directory or against the configu
 The elephant model here originates from
 [MARS-Group-HAW/model-knp-elephant](https://github.com/MARS-Group-HAW/model-knp-elephant), which was
 integrated into this repository in June 2024. That repository is now archived; this one is the maintained
-successor.
+successor. The elephant model itself was first published as
+[MARS-Group-HAW/KNP](https://github.com/MARS-Group-HAW/KNP), the companion code for the paper below; that
+repository is likewise archived.
+
+## Citation
+
+Clemen, T., Lenfers, U.A., Dybulla, J., Ferreira, S.M., Kiker, G.A., Martens, C., Scheiter, S., 2021. A
+cross-scale modeling framework for decision support on elephant management in Kruger National Park, South
+Africa. Ecol. Inform. 62, 101266. https://doi.org/10.1016/j.ecoinf.2021.101266
